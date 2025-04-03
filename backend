@@ -1,0 +1,18 @@
+# Example backend logic (pseudocode)
+ADMIN_CREDENTIALS = {
+    "admin1": "secure_password_1",
+    "admin2": "secure_password_2"
+}
+
+def login(username, password):
+    if username in ADMIN_CREDENTIALS and password == ADMIN_CREDENTIALS[username]:
+        # Redirect to admin dashboard
+        return redirect("/admin/dashboard")
+    else:
+        # Check regular user credentials
+        user = check_user_credentials(username, password)
+        if user:
+            # Redirect to user dashboard
+            return redirect("/user/dashboard")
+        else:
+            return "Invalid credentials"

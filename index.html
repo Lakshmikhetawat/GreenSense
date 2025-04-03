@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenSense - Smart Soil Monitoring</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-image: url(background\ img.jpg);
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        .overlay {
+            min-height: 100vh;
+            backdrop-filter: blur(8px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 0;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: #2F855A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            color: #2F855A;
+            font-weight: bold;
+        }
+
+        .content {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+            align-items: center;
+        }
+
+        .intro {
+            flex: 1;
+        }
+
+        .intro h1 {
+            font-size: 36px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .auth-container {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hide radio buttons but keep them accessible */
+        .tab-radio {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+        .tab-label {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #4A5568;
+            font-weight: bold;
+        }
+
+        /* Style active tab based on radio selection */
+        #login-tab:checked ~ .auth-tabs .tab-label[for="login-tab"],
+        #signup-tab:checked ~ .auth-tabs .tab-label[for="signup-tab"] {
+            color: #2F855A;
+            border-bottom: 2px solid #2F855A;
+            margin-bottom: -2px;
+        }
+
+        /* Show/hide forms based on selected tab */
+        .login-form,
+        .signup-form {
+            display: none;
+        }
+
+        #login-tab:checked ~ .login-form {
+            display: block;
+        }
+
+        #signup-tab:checked ~ .signup-form {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4A5568;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #E2E8F0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: #2F855A;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #276749;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .intro, .auth-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <header class="header">
+                <div class="logo">🌱</div>
+                <div class="brand-name">GreenSense</div>
+            </header>
+
+            <main class="content">
+                <div class="intro">
+                    <h1>Smart Soil and Plant Disease Monitoring for Better Farming</h1>
+                    <p>Welcome to GreenSense - your intelligent IoT-based soil nutrient and plant health monitoring system. Make data-driven decisions to optimize your crop yield with real-time monitoring and analysis.</p>
+                </div>
+
+                <div class="auth-container">
+                    <!-- Radio buttons for tab switching -->
+                    <input type="radio" id="login-tab" name="tab" class="tab-radio" checked>
+                    <input type="radio" id="signup-tab" name="tab" class="tab-radio">
+
+                    <!-- Tab labels -->
+                    <div class="auth-tabs">
+                        <label class="tab-label" for="login-tab">Login</label>
+                        <label class="tab-label" for="signup-tab">Sign Up</label>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form class="login-form" action="/login" method="POST">
+                        <div class="form-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" id="login-username" name="username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" required>
+                        </div>
+
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form class="signup-form" action="/signup" method="POST">
+                        <div class="form-group">
+                            <label for="signup-username">Username</label>
+                            <input type="text" id="signup-username" name="username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signup-password">Create password</label>
+                            <input type="password" id="signup-password" name="password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="language">Preferred Language</label>
+                            <select id="language" name="language">
+                                <option value="en">English</option>
+                                <option value="hi">Hindi</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn">Create Account</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
